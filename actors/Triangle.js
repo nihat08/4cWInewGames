@@ -1,20 +1,18 @@
 export class Triangle {
-    constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
+    constructor(movement, size) {
+        this.movement = movement;
         this.size = size;
     }
     render(ctx) {
         ctx.fillStyle = "green";
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + this.size / 2, this.y + this.size);
-        ctx.lineTo(this.x - this.size / 2, this.y + this.size);
+        ctx.moveTo(this.movement.getX(), this.movement.getY());
+        ctx.lineTo(this.movement.getX() + this.size / 2, this.movement.getY() + this.size);
+        ctx.lineTo(this.movement.getX() - this.size / 2, this.movement.getY() + this.size);
         ctx.closePath();
         ctx.fill();
     }
     update(deltaTime) {
-        this.x -= 50 * deltaTime; // Move triangle to the right
-        this.y += 30 * deltaTime; // Move triangle downwards
+        this.movement.update(deltaTime, this.movement.getX());
     }
 }
