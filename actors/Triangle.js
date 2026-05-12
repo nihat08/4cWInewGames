@@ -1,5 +1,7 @@
-export class Triangle {
+import { AbstractActor } from "./AbstractActor.js";
+export class Triangle extends AbstractActor {
     constructor(movement, size) {
+        super(movement);
         this.movement = movement;
         this.size = size;
     }
@@ -11,8 +13,5 @@ export class Triangle {
         ctx.lineTo(this.movement.getX() - this.size / 2, this.movement.getY() + this.size);
         ctx.closePath();
         ctx.fill();
-    }
-    update(deltaTime) {
-        this.movement.update(deltaTime, this.movement.getX());
     }
 }

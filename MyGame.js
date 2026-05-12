@@ -5,6 +5,7 @@ import { Circle } from "./actors/Circle.js";
 import { Triangle } from "./actors/Triangle.js";
 import { RightMovement } from "./movements/RightMovement.js";
 import { LeftMovement } from "./movements/LeftMovement.js";
+import { Homer } from "./actors/Homer.js";
 class MyGame extends Game {
     constructor() {
         super(...arguments);
@@ -21,6 +22,7 @@ class MyGame extends Game {
         this.actors.push(new Triangle(new LeftMovement(200, 400, 40), 50));
         this.actors.push(new Triangle(new RightMovement(400, 450, 50), 60));
         this.actors.push(new Triangle(new RightMovement(600, 500, 80), 40));
+        this.actors.push(new Homer(new RightMovement(100, 300, 30), 40));
     }
     update(deltaTime) {
         this.actors.forEach(actor => actor.update(deltaTime));

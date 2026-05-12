@@ -3,13 +3,15 @@ import { Game, GameFramework } from "./GameFramework.js";
 import { Rectangle } from "./actors/Rectangle.js";
 import { Circle } from "./actors/Circle.js";
 import { Triangle } from "./actors/Triangle.js";
-import { Actor } from "./actors/Actor.js";
+import { AbstractActor } from "./actors/AbstractActor.js";
 import { RightMovement } from "./movements/RightMovement.js";
 import { LeftMovement } from "./movements/LeftMovement.js";
-import { MoveStrategy } from "./movements/MoveStrategy.js";
+import { Homer } from "./actors/Homer.js";
+
 
 class MyGame extends Game {
-  private actors: Actor[] = [];
+    
+  private actors: AbstractActor[] = [];
 
   init(): void { 
     console.log("Game started!");
@@ -21,10 +23,13 @@ class MyGame extends Game {
     this.actors.push(new Circle(new RightMovement(100, 100, 50), 50));
     this.actors.push(new Circle(new LeftMovement(300, 150, 20), 40));
     this.actors.push(new Circle(new RightMovement(500, 200, 80), 30));
-
+    
     this.actors.push(new Triangle(new LeftMovement(200, 400, 40), 50));
     this.actors.push(new Triangle(new RightMovement(400, 450, 50), 60));
     this.actors.push(new Triangle(new RightMovement(600, 500, 80), 40));
+
+    this.actors.push(new Homer(new RightMovement(100, 300, 30), 40));
+
   }
 
   update(deltaTime: number): void {

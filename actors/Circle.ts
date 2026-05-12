@@ -1,15 +1,18 @@
 import { Actor } from "./Actor.js";
 import { MoveStrategy } from "../movements/MoveStrategy.js";
+import { AbstractActor } from "./AbstractActor.js";
 
 
-export class Circle implements Actor {
+export class Circle extends AbstractActor {
     
 
     constructor(
-        private movement: MoveStrategy,
+        protected movement: MoveStrategy,
         public radius: number
     ) 
-    {}
+    {
+        super(movement);
+    }
 
     render(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = "blue";
@@ -18,7 +21,4 @@ export class Circle implements Actor {
         ctx.fill();
     }
 
-    update(deltaTime: number): void {
-        this.movement.update(deltaTime, this.movement.getX());
-    }
 }

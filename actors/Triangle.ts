@@ -1,11 +1,14 @@
-import { Actor } from "./Actor";
-import { MoveStrategy } from "../movements/MoveStrategy";
+import { Actor } from "./Actor.js";
+import { MoveStrategy } from "../movements/MoveStrategy.js";
+import { AbstractActor } from "./AbstractActor.js";
 
-export class Triangle implements Actor {
+export class Triangle extends AbstractActor {
     constructor(
-        private movement: MoveStrategy,
+        protected movement: MoveStrategy,
         public size: number) 
-    {}
+    {
+        super(movement);
+    }
     
     render(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = "green";
@@ -15,10 +18,6 @@ export class Triangle implements Actor {
         ctx.lineTo(this.movement.getX() - this.size / 2, this.movement.getY() + this.size);
         ctx.closePath();
         ctx.fill();
-    }
-
-    update(deltaTime: number): void {
-        this.movement.update(deltaTime, this.movement.getX());
     }
 
 }
